@@ -1,0 +1,35 @@
+# Multi-Model Configuration
+# Allows different entities to use different language models
+
+name: multi_model
+
+# Model registry - define all available models
+model_registry:
+  gpt4:
+    _target_: src.models.openai_model.OpenAILanguageModel
+    model_name: gpt-4-turbo
+    api_key: ${oc.env:OPENAI_API_KEY,}
+    temperature: 0.7
+
+  claude:
+    _target_: src.models.anthropic_model.AnthropicLanguageModel
+    model_name: claude-3-5-sonnet-20241022
+    api_key: ${oc.env:ANTHROPIC_API_KEY,}
+
+  local_finetuned:
+    _target_: src.models.local_model.LocalLanguageModel
+    model_path: ${oc.env:LOCAL_MODEL_PATH,/models/my-finetuned-llm}
+    device: cuda
+
+# Entity to model mapping
+# Maps entity names to model keys from the registry
+# Entities not listed will use the default_model
+entity_model_mapping:
+  # Example mappings - override these in your scenario config
+  # Alice: gpt4
+  # Bob: claude
+  # game_master: gpt4
+  _default_: gpt4
+
+# Default model for entities not in the mapping
+default_model: gpt4

@@ -1,0 +1,5 @@
+# Mock Model Configuration (for testing without API calls)
+
+name: mock
+_target_: src.utils.testing.MockLanguageModel
+default_response: "I observe my surroundings."
