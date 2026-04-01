@@ -12,7 +12,7 @@
 # Usage:
 #   uv run python run_experiment.py scenario=valueflow
 #   uv run python run_experiment.py scenario=valueflow scenario.topology.type=ring
-#   uv run python run_experiment.py scenario=valueflow scenario.perturbation.target_value=social_power
+#   uv run python run_experiment.py scenario=valueflow scenario.perturbation.target_value=power
 
 name: valueflow
 description: "ValueFlow: Measuring value perturbation propagation in multi-agent LLM systems"
@@ -69,7 +69,7 @@ perturbation:
   # Which agent index (0-based) to perturb. null = no perturbation (baseline).
   perturbed_agent_index: 0
   # Target Schwartz value to amplify in the perturbed agent
-  target_value: social_power
+  target_value: power
   # Target value type (higher-order category)
   target_value_type: power
   # Perturbation strength: how strongly the persona is shifted (1-10)
